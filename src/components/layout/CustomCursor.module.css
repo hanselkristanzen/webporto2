@@ -1,0 +1,62 @@
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-on-dark);
+}
+
+.ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--color-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width var(--dur-normal) var(--ease-signal),
+    height var(--dur-normal) var(--ease-signal),
+    border-color var(--dur-normal) var(--ease-out),
+    background-color var(--dur-normal) var(--ease-out),
+    opacity var(--dur-normal) var(--ease-out);
+}
+
+.ring[data-state="interactive"] {
+  width: 56px;
+  height: 56px;
+}
+
+.ring[data-state="view"] {
+  width: 84px;
+  height: 84px;
+  background: var(--color-on-dark);
+}
+
+.ring[data-state="hidden"] {
+  opacity: 0;
+}
+
+.ringLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-dark);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+  mix-blend-mode: normal;
+}
+
+.ring[data-state="view"] .ringLabel {
+  opacity: 1;
+}
